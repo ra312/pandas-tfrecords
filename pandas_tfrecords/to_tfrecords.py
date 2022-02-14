@@ -3,17 +3,21 @@ import tempfile
 import uuid
 
 import numpy as np
-import s3fs
+# import s3fs
 import tensorflow as tf
 
 
 __all__ = 'to_tfrecords',
 
 
-s3_fs = s3fs.S3FileSystem()
+# s3_fs = s3fs.S3FileSystem()
 
 
-def to_tfrecords(df, folder, compression_type='GZIP', compression_level=9, columns=None, max_mb=50):
+def to_tfrecords(df,
+                 folder,
+                 compression_type='GZIP',
+                 compression_level=9,
+                 columns=None, max_mb=50):
     schema = get_schema(df, columns)
     tfrecords = get_tfrecords(df, schema)
 
@@ -27,7 +31,8 @@ def to_tfrecords(df, folder, compression_type='GZIP', compression_level=9, colum
                     compression_level=compression_level)
 
 
-def write_tfrecords(tfrecords, folder, compression_type=None, compression_level=9):
+def write_tfrecords(tfrecords, folder,
+                    compression_type=None, compression_level=9):
     compression_ext = '.gz' if compression_type else ''
 
     s3_folder = None

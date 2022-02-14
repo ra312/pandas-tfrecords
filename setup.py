@@ -18,7 +18,6 @@ setup(
     ],
     packages=['pandas_tfrecords'],
     install_requires=[
-        's3fs',
         'tensorflow',
         'pandas',
         'numpy',
